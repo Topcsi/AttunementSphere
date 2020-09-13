@@ -5,7 +5,7 @@ sonarqube {
             System.env.GITHUB_REF.substring('refs/heads/'.size())
             : 'master'
     properties {
-        property 'sonar.projectKey', 'attunementsphere'
+        property 'sonar.projectKey', 'Topcsi_AttunementSphere'
         property 'sonar.projectName', 'AttunementSphere'
         property 'sonar.organization', 'topcsi'
         property 'sonar.host.url', 'https://sonarcloud.io'
