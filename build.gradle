@@ -1,3 +1,14 @@
+buildscript {
+    dependencies {
+        classpath 'org.sonarsource.scanner.gradle:sonarqube-gradle-plugin:3.0'
+    }
+
+    repositories {
+        mavenLocal()
+        jcenter()
+    }
+}
+
 plugins {
     id 'java'
 }
@@ -26,9 +37,3 @@ dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.12'
     testCompile group: 'org.mockito', name: 'mockito-core', version: '3.5.10'
 }
-
-
-
-
-
-
