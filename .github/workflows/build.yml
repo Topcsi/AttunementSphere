@@ -25,5 +25,5 @@ jobs:
       run: ./gradlew --stacktrace --info assemble
 
     - name: Test
-      run ./gradlew --stacktrace --info test
+      run: ./gradlew --stacktrace --info test
 
