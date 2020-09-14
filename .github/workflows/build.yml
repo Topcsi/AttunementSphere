@@ -27,6 +27,9 @@ jobs:
     - name: Test
       run: ./gradlew --stacktrace --info test
 
+    - name: Create Jacoco test report
+      run: ./gradlew --stacktrace --info jacocoTestReport
+
     - name: SonarCloud scan
       env:
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
