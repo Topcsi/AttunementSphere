@@ -1,10 +1,24 @@
-plugins {
-    id 'java'
+buildscript {
+    dependencies {
+        classpath 'org.sonarsource.scanner.gradle:sonarqube-gradle-plugin:3.0'
+    }
+
+    repositories {
+        mavenLocal()
+        jcenter()
+    }
 }
 
+plugins {
+    id 'java'
+    id 'jacoco'
+}
+
+apply from: './gradle/commons.qa.gradle'
+
 java {
-    sourceCompatibility = JavaVersion.VERSION_1_8
-    targetCompatibility = JavaVersion.VERSION_1_8
+    sourceCompatibility = JavaVersion.VERSION_11
+    targetCompatibility = JavaVersion.VERSION_11
 }
 
 group 'org.dwemer'
@@ -27,8 +41,18 @@ dependencies {
     testCompile group: 'org.mockito', name: 'mockito-core', version: '3.5.10'
 }
 
+jacocoTestReport {
+    dependsOn test // tests are required to run before generating the report
+}
 
-
-
+jacoco {
+    toolVersion = "0.8.5"
+    reportsDir = file("$buildDir/jacocoReports")
+    jacocoTestReport {
+        reports {
+            xml.enabled true
+        }
+    }
+}
 
 
