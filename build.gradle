@@ -12,6 +12,7 @@ buildscript {
 plugins {
     id 'java'
     id 'jacoco'
+    id 'maven-publish'
 }
 
 apply from: './gradle/commons.qa.gradle'
@@ -57,4 +58,24 @@ jacoco {
     }
 }
 
+def ref = System.getenv('GITHUB_REF')
+if (ref != null && ref.startsWith('refs/tags/v')) {
+    version = ref.substring('refs/tags/v'.length())
+}
+else {
+    // snapshot version with incrementing build number
+    String buildNumber = System.getenv('GITHUB_RUN_NUMBER') ?: 'SNAPSHOT'
+    version = version + '.' + buildNumber
+}
 
+publishing {
+    repositories {
+        maven {
+            url = "https://maven.pkg.github.com/Topcsi/AttunementSphere"
+            credentials {
+                username = findProperty('repoUser') ?: System.env.GITHUB_USER
+                password = findProperty('repoPass') ?: System.env.GITHUB_TOKEN
+            }
+        }
+    }
+}
