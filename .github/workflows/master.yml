@@ -1,9 +1,7 @@
-name: Java CI with Gradle
+name: master build
 
 on:
   push:
-    branches: [ master ]
-  pull_request:
     branches: [ master ]
 
 jobs:
@@ -37,3 +35,8 @@ jobs:
         BASE_BRANCH: ${{ github.base_ref }}
       run: ./gradlew sonarqube --stacktrace --info
 
+    - name: Publish
+      env:
+        GITHUB_USER: x-access-token
+        GITHUB:TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: ./gradlew --stacktrace --info publish
