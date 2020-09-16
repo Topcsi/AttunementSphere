@@ -33,5 +33,11 @@ jobs:
           BASE_BRANCH: ${{ github.base_ref }}
         run: ./gradlew sonarqube --stacktrace --info
 
-      - name: print stuff 1
+      - name: print github ref
         run: echo $GITHUB_REF
+
+      - name: print github run number
+        run: echo $GITHUB_RUN_NUMBER
+
+      - name: print github user
+        run: echo $GITHUB_USER
