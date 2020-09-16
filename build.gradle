@@ -71,11 +71,16 @@ else {
 publishing {
     repositories {
         maven {
-            url = "https://maven.pkg.github.com/Topcsi/AttunementSphere"
+            url = "https://maven.pkg.github.com/topcsi/attunementsphere"
             credentials {
                 username = findProperty('repoUser') ?: System.env.GITHUB_USER
                 password = findProperty('repoPass') ?: System.env.GITHUB_TOKEN
             }
+        }
+    }
+    publications {
+        gpr(MavenPublication) {
+            from(components.java)
         }
     }
 }

@@ -1,9 +1,7 @@
-name: Java CI with Gradle
+name: master build
 
 on:
   push:
-    branches: [ master ]
-  pull_request:
     branches: [ master ]
 
 jobs:
