@@ -17,12 +17,6 @@ jobs:
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
 
-      - name: print stuff 1
-        run: echo ${{'GITHUB_REF'}}
-
-      - name: print stuff 2
-        run: echo ${{GITHUB_REF}}
-
       - name: Assemble
         run: ./gradlew --stacktrace --info assemble
 
@@ -38,3 +32,9 @@ jobs:
           PR_NUMBER: ${{ github.event.number }}
           BASE_BRANCH: ${{ github.base_ref }}
         run: ./gradlew sonarqube --stacktrace --info
+
+      - name: print stuff 1
+        run: echo ${{'GITHUB_REF'}}
+
+      - name: print stuff 2
+        run: echo ${{GITHUB_REF}}
